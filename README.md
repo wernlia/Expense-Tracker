@@ -1,3 +1,3 @@
-Shipping-Rates
+Expense Tracker
 ==============
-This code will take inputs for origin and destination zip code, package weight, and shipping speed. It will then use a formula to calculate the shipping cost and display it on the screen.
+This code will take inputs for expenses and list them in a table.
