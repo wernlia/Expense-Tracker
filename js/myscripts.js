@@ -45,4 +45,9 @@ $(document).ready(function() {
         emptyTable();
         makeTable();
     });
+    $("form#new-category").submit(function(event) {
+        event.preventDefault();
+
+        $("fieldset").removeAttr('disabled');
+    });
 });
