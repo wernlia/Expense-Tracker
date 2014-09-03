@@ -17,17 +17,19 @@
         <div class="row container-fluid">
             <div class="col-md-3">
                 <h3>Categories</h3>
+                <p>
+                    <form role="form" id="new-category">
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="category" placeholder="Category Name">
+                            <span class="input-group-btn">
+                                <button type="submit" class="btn btn-default">New Category</button>
+                            </span>
+                        </div>
+                    </form>
+                </p>
                 <span id="categoryList">
                     <i>You haven't created any categories yet. Create one using the form below.</i>
                 </span>
-                <form role="form" id="new-category">
-                    <div class="input-group">
-                        <input type="text" class="form-control" id="category" placeholder="Category Name">
-                        <span class="input-group-btn">
-                            <button type="submit" class="btn btn-default">New Category</button>
-                        </span>
-                    </div>
-                </form>
             </div>
             <div class="col-md-3">
                 <h3>Add purchase:</h3>
