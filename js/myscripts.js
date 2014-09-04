@@ -6,10 +6,10 @@ var Item = { // Item prototype
         this.category = currentCategory; // Category identifier
     },
     totalCost: function(){  // Calculate the total cost
-        return this.cost * this.quantity;
+        return parseFloat(this.cost * this.quantity).toFixed(2);
     },
     buildTable: function(){ // build the table
-            $("#finalTable").append("<tr><td>"+this.descript+"</td><td>$"+this.cost+"</td><td>"+this.quantity+"</td><td>$"+this.totalCost()+"</td></tr>");
+            $("#finalTable").append("<tr><td>"+this.descript+"</td><td>$"+parseFloat(this.cost).toFixed(2)+"</td><td>"+this.quantity+"</td><td>$"+this.totalCost()+"</td></tr>");
     },
 }
 
@@ -24,12 +24,16 @@ var List = {    // List prototype
         currentCategory = categoryName;
         emptyTable();
         makeTable();
+        $("button").removeClass("btn-success");
+        $("#"+categoryName).addClass("btn-success");
         $("#"+categoryName).click(function(){
             $("#categoryName").empty();
             $("#categoryName").text(categoryName);
             currentCategory = categoryName;
             emptyTable();
             makeTable();
+            $("button").removeClass("btn-success");
+            $(this).addClass("btn-success");
         })
     }
 }
@@ -84,14 +88,27 @@ $(document).ready(function() {
 
         var newItem = Object.create(Item); // create a new item object
         newItem.initialize($("input#description").val(), $("input#price").val(), $("input#quantity").val());   // read from the form
-        listOfItems.push(newItem);     // add it to the array    
+        if(parseFloat(newItem.cost) && parseInt(newItem.quantity)){
 
-        $("input#description").val(""); // clear the form
-        $("input#price").val("");
-        $("input#quantity").val("");
+            listOfItems.push(newItem);     // add it to the array    
 
-        emptyTable(); // rebuild the table
-        makeTable();
+            $("input#description").val(""); // clear the form
+            $("input#price").val("");
+            $("input#quantity").val("");
+            $("#priceForm").removeClass("has-error");
+            $("#quantityForm").removeClass("has-error");
+
+            emptyTable(); // rebuild the table
+            makeTable();
+        }
+        else{
+            if(!parseFloat(newItem.cost)){
+                $("#priceForm").addClass("has-error");
+            }
+            if(!parseInt(newItem.quantity)){
+                $("#quantityForm").addClass("has-error");
+            } 
+        }
 
     });
 
